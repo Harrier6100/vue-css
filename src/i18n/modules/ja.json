@@ -1,0 +1,8 @@
+{
+  "button": {
+    "save": "保存"
+  },
+  "yup": {
+    "required": "{ label }は必須です。"
+  }
+}
