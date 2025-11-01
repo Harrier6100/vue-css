@@ -9,9 +9,11 @@
                 </tr>
             </thead>
             <tbody>
+                <div v-if="isLoading">Loading...</div>
+                <div v-if="isSpinning">Spinning...</div>
                 <tr v-for="translation in translations" :key="translation.id">
                     <td>{{ translation.id }}</td>
-                    <td>{{ translation.translations[locale] }}</td>
+                    <td>{{ translation.translations?.[locale] }}</td>
                     <td>{{ getDateTime(translation.createdAt) }}</td>
                     <td>{{ translation.createdBy }}</td>
                     <td>{{ getDateTime(translation.updatedAt) }}</td>
@@ -34,6 +36,7 @@ import { useI18n } from 'vue-i18n';
 import { useRoute, useRouter } from 'vue-router';
 import { useQuery } from '@/composables/useQuery';
 import { useLoading } from '@/composables/useLoading';
+import { useSpinning } from '@/composables/useSpinning';
 import { errorHandler } from '@/composables/useErrorHandler';
 import { getDateTime } from '@/utils/formatDateTime';
 import { api } from '@/api/api';
@@ -43,20 +46,23 @@ const route = useRoute();
 const router = useRouter();
 const { setQuery } = useQuery();
 const { isLoading, startLoading, stopLoading } = useLoading();
+const { isSpinning, execute } = useSpinning();
 
 const translations = ref([]);
 
 onMounted(() => {
-    fetchTranslations();
+    loadTranslations();
 });
 
-const fetchTranslations = async () => {
+const loadTranslations = async () => {
+    startLoading();
     try {
-        startLoading();
-        const response = await api.get(`/api/translations`);
-        translations.value = response.data;
+        await execute(async () => {
+            const response = await api.get('/api/translations');
+            translations.value = response.data;
+        });
     } catch (error) {
-        errorHandler(error);
+        errorHandler(error);        
     } finally {
         stopLoading();
     }
@@ -78,10 +84,12 @@ const editTranslation = (id) => {
 };
 
 const deleteTranslation = async (id) => {
+    startLoading();
     try {
-        startLoading();
-        await api.delete(`/api/translations/${id}`);
-        fetchTranslations();
+        await execute(async () => {
+            await api.delete(`/api/translations/${id}`);
+            loadTranslations();
+        });
     } catch (error) {
         errorHandler(error);
     } finally {

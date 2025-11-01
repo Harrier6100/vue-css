@@ -26,14 +26,16 @@ const { isSpinning, execute } = useSpinning();
 const form = ref({});
 
 onMounted(() => {
-    fetchLocale(route.params.id);
+    fetchTranslation(route.params.id);
 });
 
-const fetchLocale = async (id) => {
+const fetchTranslation = async (id) => {
+    startLoading();
     try {
-        startLoading();
-        const response = await api.get(`/api/translations/${id}`);
-        form.value = response.data;
+        await execute(async () => {
+            const response = await api.get(`/api/translations/${id}`);
+            form.value = response.data;
+        });
     } catch (error) {
         errorHandler(error);
     } finally {
@@ -42,8 +44,8 @@ const fetchLocale = async (id) => {
 };
 
 const onSave = async (data) => {
+    startLoading();
     try {
-        startLoading();
         await execute(async () => {
             await api.put(`/api/translations/${route.params.id}`, data);
         });

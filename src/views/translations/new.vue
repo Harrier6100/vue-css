@@ -25,8 +25,8 @@ const { isSpinning, execute } = useSpinning();
 const form = ref();
 
 const onSave = async (data) => {
+    startLoading();
     try {
-        startLoading();
         await execute(async () => {
             await api.post(`/api/translations`, data);
             form.value?.restore?.();

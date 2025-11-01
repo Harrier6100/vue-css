@@ -24,7 +24,7 @@
                 </tbody>
             </table>
         </div>
-        <button class="px-4 py-1 rounded-md cursor-pointer text-white bg-blue-500 transition-colors duration-200 hover:bg-blue-600" type="submit" :disabled="isLoading">
+        <button class="px-4 py-1 rounded-md cursor-pointer text-white bg-blue-500 transition-colors duration-200 hover:bg-blue-600" :class="{ 'opacity-50 pointer-events-none': isLoading }" type="submit" :disabled="isLoading">
             <span v-if="props.isSpinning"></span>{{ t('button.save') }}
         </button>
         <button class="px-4 py-1 rounded-md cursor-pointer" type="button" @click="emit('cancel')">{{ t('button.cancel') }}</button>
