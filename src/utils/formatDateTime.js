@@ -2,7 +2,7 @@ import moment from 'moment';
 
 const format = (timestamp, formatStyle) => {
     if (!timestamp) return '';
-    return moment(timestamp).format(formatStyle);
+    return moment.utc(timestamp).local().format(formatStyle);
 };
 
 export const getDate = (timestamp) => {

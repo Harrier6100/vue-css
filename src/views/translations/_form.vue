@@ -7,27 +7,23 @@
         </div>
         <div class="mb-3">
             <label class="text-gray-700">{{ t('label.translations.translations') }}</label>
-            <table>
-                <tbody>
-                    <tr>
-                        <td><i class="fi fi-jp w-4 h-4"></i></td>
-                        <td><input class="px-1 border border-gray-300 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-blue-300" type="text" v-model="form.translations.ja"></td>
-                    </tr>
-                    <tr>
-                        <td><i class="fi fi-us w-4 h-4"></i></td>
-                        <td><input class="px-1 border border-gray-300 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-blue-300" type="text" v-model="form.translations.en"></td>
-                    </tr>
-                    <tr>
-                        <td><i class="fi fi-kr w-4 h-4"></i></td>
-                        <td><input class="px-1 border border-gray-300 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-blue-300" type="text" v-model="form.translations.ko"></td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="mb-3">
+                <label><i class="fi fi-jp w-4 h-4"></i></label>
+                <input class="px-1 border border-gray-300 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-blue-300" type="text" v-model="form.translations.ja">
+            </div>
+            <div class="mb-3">
+                <label><i class="fi fi-us w-4 h-4"></i></label>
+                <input class="px-1 border border-gray-300 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-blue-300" type="text" v-model="form.translations.en">
+            </div>
+            <div class="mb-3">
+                <label><i class="fi fi-kr w-4 h-4"></i></label>
+                <input class="px-1 border border-gray-300 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-blue-300" type="text" v-model="form.translations.ko">
+            </div>
         </div>
-        <button class="px-4 py-1 rounded-md cursor-pointer text-white bg-blue-500 transition-colors duration-200 hover:bg-blue-600" :class="{ 'opacity-50 pointer-events-none': isLoading }" type="submit" :disabled="isLoading">
+        <button class="px-4 py-1 rounded-md cursor-pointer text-white bg-blue-500 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-300 active:hover:bg-blue-600 disabled:opacity-50 disabled:pointer-events-none" type="submit" :disabled="isLoading">
             <span v-if="props.isSpinning"></span>{{ t('button.save') }}
         </button>
-        <button class="px-4 py-1 rounded-md cursor-pointer" type="button" @click="emit('cancel')">{{ t('button.cancel') }}</button>
+        <button class="px-4 py-1 rounded-md cursor-pointer focus:outline-none" type="button" @click="emit('cancel')">{{ t('button.back') }}</button>
     </form>
 </template>
 
@@ -71,11 +67,11 @@ watch(() => props.form, (data) => {
     if (data) Object.assign(form.value, data);
 }, { immediate: true });
 
-const onSave = () => {
-    validate(schema, form.value).then((is) => {
-        if (!is) return;
-        emit('save', { ...form.value });
-    });
+const onSave = async () => {
+    const isValid = await validate(schema, form.value);
+    if (!isValid) return;
+
+    emit('save', { ...form.value });
 };
 
 defineExpose({

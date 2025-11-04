@@ -1,8 +1,38 @@
 {
   "button": {
-    "save": "保存"
+    "save": "保存",
+    "cancel": "キャンセル",
+    "edit": "編集",
+    "delete": "削除",
+    "create": "新規作成",
+    "no": "No",
+    "yes": "Yes",
+    "back": "戻る"
   },
   "yup": {
     "required": "{ label }は必須です。"
+  },
+  "label": {
+    "translations": {
+      "id": "翻訳キー",
+      "translations": "翻訳"
+    },
+    "created_at": "作成日時",
+    "created_by": "作成者",
+    "updated_at": "更新時間",
+    "updated_by": "更新者"
+  },
+  "menu": {
+    "translations-new": "翻訳設定",
+    "translations": "翻訳設定",
+    "translations-id": "翻訳設定"
+  },
+  "dialog": {
+    "delete": "削除しますか？"
+  },
+  "toast": {
+    "translations": {
+      "save": "保存しました。"
+    }
   }
 }

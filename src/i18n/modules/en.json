@@ -1,8 +1,33 @@
 {
   "button": {
-    "save": ""
+    "save": "Save",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "delete": "Delete",
+    "create": "New Create",
+    "no": "No",
+    "yes": "Yes",
+    "back": "Back"
   },
   "yup": {
-    "required": ""
+    "required": "{ label } is required."
+  },
+  "label": {
+    "translations": {
+      "id": "Translation Key",
+      "translations": "Translations"
+    },
+    "created_at": "Created At",
+    "created_by": "Created By",
+    "updated_at": "Updated At",
+    "updated_by": "Updated By"
+  },
+  "menu": {
+    "translations-new": "Translation Setting",
+    "translations": "Translation Setting",
+    "translations-id": "Translation Setting"
+  },
+  "dialog": {
+    "delete": "Delete this?"
   }
 }

@@ -12,7 +12,9 @@ const i18n = createI18n({
     legacy: false,
     locale: localStorage.getItem('lang') ?? 'ja',
     messages,
-    missingWarn: false,
+    missing: (locale, key) => {
+        return key;
+    },
     fallbackWarn: false,
 });
 

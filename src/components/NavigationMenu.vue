@@ -1,11 +1,11 @@
 <template>
-    <nav>
-        <!-- <div class="flex bg-blue-500 gap-1">
+    <!-- <nav>
+        <div class="flex bg-blue-500 gap-1">
             <button class="cursor-pointer" @click="changeLocale('ja')"><span class="fi fi-jp w-6 h-4"></span></button>
             <button class="cursor-pointer" @click="changeLocale('en')"><span class="fi fi-us w-6 h-4"></span></button>
             <button class="cursor-pointer" @click="changeLocale('ko')"><span class="fi fi-kr w-6 h-4"></span></button>
-        </div> -->
-    </nav>
+        </div>
+    </nav> -->
 </template>
 
 <script setup>

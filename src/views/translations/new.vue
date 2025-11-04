@@ -12,6 +12,7 @@ import { useRouter } from 'vue-router';
 import { useQuery } from '@/composables/useQuery';
 import { useLoading } from '@/composables/useLoading';
 import { useSpinning } from '@/composables/useSpinning';
+import { useToast } from '@/composables/useToast';
 import { errorHandler } from '@/composables/useErrorHandler';
 import { api } from '@/api/api';
 import Form from './_form.vue';
@@ -21,6 +22,7 @@ const router = useRouter();
 const { getQuery } = useQuery();
 const { startLoading, stopLoading } = useLoading();
 const { isSpinning, execute } = useSpinning();
+const { addToast } = useToast();
 
 const form = ref();
 
@@ -29,6 +31,7 @@ const onSave = async (data) => {
     try {
         await execute(async () => {
             await api.post(`/api/translations`, data);
+            addToast(t('toast.translations.save'), 'success');
             form.value?.restore?.();
         });
     } catch (error) {

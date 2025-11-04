@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const db = require('./config/db.mongodb');
 
 const propertyNested = (obj, key, value) => {
+    if (!value) return;
     const keys = key.split('.');
     let currentObj = obj;
 
