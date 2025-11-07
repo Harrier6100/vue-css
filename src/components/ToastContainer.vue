@@ -9,5 +9,6 @@
 
 <script setup>
 import { useToast } from '@/composables/useToast';
+
 const { toasts, addToast, removeToast } = useToast();
 </script>

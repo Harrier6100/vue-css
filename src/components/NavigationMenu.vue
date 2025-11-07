@@ -13,7 +13,6 @@ import { watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { setLocale } from 'yup';
 import { getYupLocale } from '@/i18n/yup';
-import 'flag-icons/css/flag-icons.min.css';
 
 const { t, locale } = useI18n();
 

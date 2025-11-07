@@ -1,14 +1,11 @@
 <template>
     <div class="container mx-auto">
-        <h1>{{ t('menu.translations-new') }}</h1>
+        <h1 class="mb-3">{{ t('menu.translations-new') }}</h1>
         <Form ref="form" :isSpinning="isSpinning" @save="onSave" @cancel="onCancel" />
     </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { useI18n } from 'vue-i18n';
-import { useRouter } from 'vue-router';
 import { useQuery } from '@/composables/useQuery';
 import { useLoading } from '@/composables/useLoading';
 import { useSpinning } from '@/composables/useSpinning';

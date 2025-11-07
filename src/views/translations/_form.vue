@@ -28,13 +28,9 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue';
-import { useI18n } from 'vue-i18n';
-import { useLoading } from '@/composables/useLoading';
 import * as yup from 'yup';
+import { useLoading } from '@/composables/useLoading';
 import { useValidate } from '@/composables/useValidate';
-import Message from '@/components/Message.vue';
-import 'flag-icons/css/flag-icons.min.css';
 
 const props = defineProps({
     form: Object,
@@ -64,7 +60,9 @@ const formRestore = () => ({
 const form = ref(formRestore());
 
 watch(() => props.form, (data) => {
-    if (data) Object.assign(form.value, data);
+    if (data) {
+        form.value = { ...formRestore(), ...data };
+    }
 }, { immediate: true });
 
 const onSave = async () => {

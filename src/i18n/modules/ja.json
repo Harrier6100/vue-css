@@ -7,7 +7,9 @@
     "create": "新規作成",
     "no": "No",
     "yes": "Yes",
-    "back": "戻る"
+    "back": "戻る",
+    "close": "閉じる",
+    "search": "検索"
   },
   "yup": {
     "required": "{ label }は必須です。"
@@ -20,12 +22,26 @@
     "created_at": "作成日時",
     "created_by": "作成者",
     "updated_at": "更新時間",
-    "updated_by": "更新者"
+    "updated_by": "更新者",
+    "coating_reports": {
+      "coating_date": "塗工日",
+      "machine_code": "機械コード",
+      "product_code": "品名コード",
+      "machine_name": "機械名",
+      "product_name": "品名",
+      "coating_sqm_qty": "生産量",
+      "bs_issue_sqm_qty": "ベース投入数量（m2）",
+      "bs_yield": "ベース歩留（%）",
+      "sp_issue_sqm_qty": "セパ投入数量（m2）",
+      "sp_yield": "セパ歩留（%）",
+      "rate": "生産効率"
+    }
   },
   "menu": {
     "translations-new": "翻訳設定",
     "translations": "翻訳設定",
-    "translations-id": "翻訳設定"
+    "translations-id": "翻訳設定",
+    "coating_reports": "塗工生産効率"
   },
   "dialog": {
     "delete": "削除しますか？"

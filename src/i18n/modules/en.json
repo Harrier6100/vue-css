@@ -7,7 +7,9 @@
     "create": "New Create",
     "no": "No",
     "yes": "Yes",
-    "back": "Back"
+    "back": "Back",
+    "close": "Close",
+    "search": "Search"
   },
   "yup": {
     "required": "{ label } is required."
@@ -20,7 +22,14 @@
     "created_at": "Created At",
     "created_by": "Created By",
     "updated_at": "Updated At",
-    "updated_by": "Updated By"
+    "updated_by": "Updated By",
+    "coating_reports": {
+      "coating_date": "Coating Date",
+      "machine_code": "Machine Code",
+      "product_code": "Product Code",
+      "machine_name": "Machine Name",
+      "product_name": "Product Name"
+    }
   },
   "menu": {
     "translations-new": "Translation Setting",

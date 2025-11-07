@@ -16,7 +16,8 @@ export const useValidate = () => {
             const newErrors = {};
             if (err.inner && Array.isArray(err.inner)) {
                 err.inner.forEach(e => {
-                    newErrors[e.path] = e.message;
+                    const path = e.path || 'error';
+                    newErrors[path] = e.message;
                 });
             }
             errors.value = newErrors;
