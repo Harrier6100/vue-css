@@ -2,28 +2,28 @@
     <form @submit.prevent="onSave" autocomplete="off">
         <div class="mb-3">
             <label class="text-gray-700" for="id">{{ t('label.translations.id') }}</label>
-            <input class="px-1 border border-gray-300 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-blue-300" type="text" id="id" v-model="form.id">
+            <Input type="text" v-model="form.id" />
             <Message :error="errors.id" />
         </div>
         <div class="mb-3">
             <label class="text-gray-700">{{ t('label.translations.translations') }}</label>
-            <div class="mb-3">
+            <div class="flex gap-3 mb-3">
                 <label><i class="fi fi-jp w-4 h-4"></i></label>
-                <input class="px-1 border border-gray-300 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-blue-300" type="text" v-model="form.translations.ja">
+                <Input type="text" v-model="form.translations.ja" />
             </div>
-            <div class="mb-3">
+            <div class="flex gap-3 mb-3">
                 <label><i class="fi fi-us w-4 h-4"></i></label>
-                <input class="px-1 border border-gray-300 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-blue-300" type="text" v-model="form.translations.en">
+                <Input type="text" v-model="form.translations.en" />
             </div>
-            <div class="mb-3">
+            <div class="flex gap-3 mb-3">
                 <label><i class="fi fi-kr w-4 h-4"></i></label>
-                <input class="px-1 border border-gray-300 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-blue-300" type="text" v-model="form.translations.ko">
+                <Input type="text" v-model="form.translations.ko" />
             </div>
         </div>
-        <button class="px-4 py-1 rounded-md cursor-pointer text-white bg-blue-500 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-300 active:hover:bg-blue-600 disabled:opacity-50 disabled:pointer-events-none" type="submit" :disabled="isLoading">
+        <Button variant="primary" type="submit" :disabled="isLoading">
             <span v-if="props.isSpinning"></span>{{ t('button.save') }}
-        </button>
-        <button class="px-4 py-1 rounded-md cursor-pointer focus:outline-none" type="button" @click="emit('cancel')">{{ t('button.back') }}</button>
+        </Button>
+        <Button type="button" @click="emit('cancel')">{{ t('button.back') }}</Button>
     </form>
 </template>
 

@@ -3,8 +3,8 @@
         <h1 class="mb-3">{{ t('menu.translations') }}</h1>
         <div class="mb-3">
             <div class="flex gap-3 mb-3">
-                <input class="px-1 border border-gray-300 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-blue-300" type="text" v-model="keyword">
-                <button class="cursor-pointer" @click="createTranslation" :disabled="isLoading">{{ t('button.create') }}</button>
+                <Input type="text" v-model="keyword" />
+                <Button variant="primary" @click="createTranslation" :disabled="isLoading">{{ t('button.create') }}</Button>
             </div>
             <table>
                 <thead>
