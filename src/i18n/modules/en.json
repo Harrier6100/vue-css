@@ -9,7 +9,8 @@
     "yes": "Yes",
     "back": "Back",
     "close": "Close",
-    "search": "Search"
+    "search": "Search",
+    "reset": "Reset"
   },
   "yup": {
     "required": "{ label } is required."

@@ -5,57 +5,60 @@
             <form @submit.prevent="onSearch" autocomplete="off">
                 <div class="mb-3">
                     <label>{{ t('label.coating_reports.coating_date') }}</label>
-                    <input class="border" type="text" id="coatingDateFrom" v-model="form.coatingDateFrom">
-                    <input class="border" type="text" id="coatingDateTo" v-model="form.coatingDateTo">
+                    <Input type="text" id="coatingDateFrom" v-model="form.coatingDateFrom" />
+                    <Input type="text" id="coatingDateTo" v-model="form.coatingDateTo" />
                 </div>
                 <div class="mb-3">
                     <label>{{ t('label.coating_reports.machine_code') }}</label>
-                    <input class="border" type="text" id="machineCode" v-model="form.machineCode">
+                    <Input type="text" id="machineCode" v-model="form.machineCode" />
                 </div>
                 <div class="mb-3">
                     <label>{{ t('label.coating_reports.product_code') }}</label>
-                    <input class="border" type="text" id="productCode" v-model="form.productCode">
+                    <Input type="text" id="productCode" v-model="form.productCode" />
                 </div>
-                <button class="border bg-blue-500 text-white cursor-pointer disabled:opacity-50 disabled:pointer-events-none" type="submit" :disabled="isLoading">
-                    <span v-if="isSpinning"></span>{{ t('button.search') }}
-                </button>
+                <div class="mb-3">
+                    <Button variant="primary" type="submit" :disabled="isLoading">
+                        <span v-if="isSpinning"></span>{{ t('button.search') }}
+                    </Button>
+                    <Button type="button" @click="onReset">{{ t('button.reset') }}</Button>
+                </div>
+                <span class="text-red-500">{{ errors.error }}</span>
             </form>
         </div>
         <div class="mb-3">
-            <table class="w-full">
+            <table>
                 <thead>
                     <tr>
-                        <TableHeader sortKey="machineCode" :sortBy :orderBy>{{ t('label.coating_reports.machine_code') }}</TableHeader>
-                        <TableHeader sortKey="machineName" :sortBy :orderBy>{{ t('label.coating_reports.machine_name') }}</TableHeader>
-                        <TableHeader sortKey="coatingDate" :sortBy :orderBy>{{ t('label.coating_reports.coating_date') }}</TableHeader>
-                        <TableHeader sortKey="productCode" :sortBy :orderBy>{{ t('label.coating_reports.product_code') }}</TableHeader>
-                        <TableHeader sortKey="productName" :sortBy :orderBy>{{ t('label.coating_reports.product_name') }}</TableHeader>
-                        <TableHeader sortKey="coatingSqmQty" :sortBy :orderBy>{{ t('label.coating_reports.coating_sqm_qty') }}</TableHeader>
-                        <TableHeader sortKey="bsIssueSqmQty" :sortBy :orderBy>{{ t('label.coating_reports.bs_issue_sqm_qty') }}</TableHeader>
-                        <TableHeader sortKey="bsYield" :sortBy :orderBy>{{ t('label.coating_reports.bs_yield') }}</TableHeader>
-                        <TableHeader sortKey="spIssueSqmQty" :sortBy :orderBy>{{ t('label.coating_reports.sp_issue_sqm_qty') }}</TableHeader>
-                        <TableHeader sortKey="spYield" :sortBy :orderBy>{{ t('label.coating_reports.sp_yield') }}</TableHeader>
-                        <TableHeader sortKey="rate" :sortBy :orderBy>{{ t('label.coating_reports.rate') }}</TableHeader>
+                        <Th sortKey="machineCode" :sortBy :orderBy>{{ t('label.coating_reports.machine_code') }}</Th>
+                        <Th sortKey="machineName" :sortBy :orderBy>{{ t('label.coating_reports.machine_name') }}</Th>
+                        <Th sortKey="coatingDate" :sortBy :orderBy>{{ t('label.coating_reports.coating_date') }}</Th>
+                        <Th sortKey="productCode" :sortBy :orderBy>{{ t('label.coating_reports.product_code') }}</Th>
+                        <Th sortKey="productName" :sortBy :orderBy>{{ t('label.coating_reports.product_name') }}</Th>
+                        <Th sortKey="coatingSqmQty" :sortBy :orderBy>{{ t('label.coating_reports.coating_sqm_qty') }}</Th>
+                        <Th sortKey="bsIssueSqmQty" :sortBy :orderBy>{{ t('label.coating_reports.bs_issue_sqm_qty') }}</Th>
+                        <Th sortKey="bsYield" :sortBy :orderBy>{{ t('label.coating_reports.bs_yield') }}</Th>
+                        <Th sortKey="spIssueSqmQty" :sortBy :orderBy>{{ t('label.coating_reports.sp_issue_sqm_qty') }}</Th>
+                        <Th sortKey="spYield" :sortBy :orderBy>{{ t('label.coating_reports.sp_yield') }}</Th>
+                        <Th sortKey="rate" :sortBy :orderBy>{{ t('label.coating_reports.rate') }}</Th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-200">
                     <tr v-for="(coatingRecord, index) in sortedData" :key="index">
-                        <td class="px-2 py-2 text-start">{{ coatingRecord.machineCode }}</td>
-                        <td class="px-2 py-2 text-start">{{ coatingRecord.machineName }}</td>
-                        <td class="px-2 py-2 text-start">{{ coatingRecord.coatingDate }}</td>
-                        <td class="px-2 py-2 text-start">{{ coatingRecord.productCode }}</td>
-                        <td class="px-2 py-2 text-start">{{ coatingRecord.productName }}</td>
-                        <td class="px-2 py-2 text-end">{{ coatingRecord.coatingSqmQty }}</td>
-                        <td class="px-2 py-2 text-end">{{ coatingRecord.bsIssueSqmQty }}</td>
-                        <td class="px-2 py-2 text-end">{{ coatingRecord.bsYield }}</td>
-                        <td class="px-2 py-2 text-end">{{ coatingRecord.spIssueSqmQty }}</td>
-                        <td class="px-2 py-2 text-end">{{ coatingRecord.spYield }}</td>
-                        <td class="px-2 py-2 text-end">{{ coatingRecord.rate }}</td>
+                        <Td class="px-2 py-2 text-start">{{ coatingRecord.machineCode }}</Td>
+                        <Td class="px-2 py-2 text-start">{{ coatingRecord.machineName }}</Td>
+                        <Td class="px-2 py-2 text-start">{{ coatingRecord.coatingDate }}</Td>
+                        <Td class="px-2 py-2 text-start">{{ coatingRecord.productCode }}</Td>
+                        <Td class="px-2 py-2 text-start">{{ coatingRecord.productName }}</Td>
+                        <Td class="px-2 py-2 text-end">{{ coatingRecord.coatingSqmQty }}</Td>
+                        <Td class="px-2 py-2 text-end">{{ coatingRecord.bsIssueSqmQty }}</Td>
+                        <Td class="px-2 py-2 text-end">{{ coatingRecord.bsYield }}</Td>
+                        <Td class="px-2 py-2 text-end">{{ coatingRecord.spIssueSqmQty }}</Td>
+                        <Td class="px-2 py-2 text-end">{{ coatingRecord.spYield }}</Td>
+                        <Td class="px-2 py-2 text-end">{{ coatingRecord.rate }}</Td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        {{ errors.error }}
     </div>
 </template>
 
@@ -108,5 +111,11 @@ const onSearch = async () => {
     } finally {
         stopLoading();
     }
+};
+
+const onReset = () => {
+    form.value = formRestore();
+    coatingReports.value = [];
+    errors.value = {};
 };
 </script>

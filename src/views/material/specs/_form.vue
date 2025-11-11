@@ -1,29 +1,10 @@
 <template>
     <form @submit.prevent="onSave" autocomplete="off">
         <div class="mb-3">
-            <Label>{{ t('label.translations.id') }}</Label>
+            <Label>{{ t('label.material_specs.id') }}</Label>
             <Input type="text" v-model="form.id" />
             <Message :error="errors.id" />
         </div>
-        <div class="mb-3">
-            <Label>{{ t('label.translations.translations') }}</Label>
-            <div class="flex gap-3 mb-3">
-                <Label><i class="fi fi-jp w-4 h-4"></i></Label>
-                <Input type="text" v-model="form.translations.ja" />
-            </div>
-            <div class="flex gap-3 mb-3">
-                <Label><i class="fi fi-us w-4 h-4"></i></Label>
-                <Input type="text" v-model="form.translations.en" />
-            </div>
-            <div class="flex gap-3 mb-3">
-                <Label><i class="fi fi-kr w-4 h-4"></i></Label>
-                <Input type="text" v-model="form.translations.ko" />
-            </div>
-        </div>
-        <Button variant="primary" type="submit" :disabled="isLoading">
-            <span v-if="props.isSpinning"></span>{{ t('button.save') }}
-        </Button>
-        <Button type="button" @click="emit('cancel')">{{ t('button.back') }}</Button>
     </form>
 </template>
 
@@ -46,16 +27,11 @@ const { isLoading } = useLoading();
 const { errors, validate, withLabel } = useValidate();
 
 const schema = yup.object({
-    id: withLabel('label.translations.id', yup.string().required()),
+    id: withLabel('label.material_specs.id', yup.string().required()),
 });
 
 const formRestore = () => ({
     id: '',
-    translations: {
-        ja: '',
-        en: '',
-        ko: '',
-    },
 });
 const form = ref(formRestore());
 

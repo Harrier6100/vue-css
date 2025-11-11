@@ -9,7 +9,8 @@
     "yes": "Yes",
     "back": "戻る",
     "close": "閉じる",
-    "search": "検索"
+    "search": "検索",
+    "reset": "リセット"
   },
   "yup": {
     "required": "{ label }は必須です。"

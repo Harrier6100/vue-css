@@ -9,30 +9,30 @@
             <table>
                 <thead>
                     <tr>
-                        <TableHeader sortKey="id" :sortBy :orderBy>{{ t('label.translations.id') }}</TableHeader>
-                        <TableHeader :sortKey="'translations.' + locale" :sortBy :orderBy>{{ t('label.translations.translations') }}</TableHeader>
-                        <TableHeader sortKey="created_at" :sortBy :orderBy>{{ t('label.created_at') }}</TableHeader>
-                        <TableHeader sortKey="created_by" :sortBy :orderBy>{{ t('label.created_by') }}</TableHeader>
-                        <TableHeader sortKey="updated_at" :sortBy :orderBy>{{ t('label.updated_at') }}</TableHeader>
-                        <TableHeader sortKey="updated_by" :sortBy :orderBy>{{ t('label.updated_by') }}</TableHeader>
-                        <TableHeader></TableHeader>
+                        <Th sortKey="id" :sortBy :orderBy>{{ t('label.translations.id') }}</Th>
+                        <Th :sortKey="'translations.' + locale" :sortBy :orderBy>{{ t('label.translations.translations') }}</Th>
+                        <Th sortKey="created_at" :sortBy :orderBy>{{ t('label.created_at') }}</Th>
+                        <Th sortKey="created_by" :sortBy :orderBy>{{ t('label.created_by') }}</Th>
+                        <Th sortKey="updated_at" :sortBy :orderBy>{{ t('label.updated_at') }}</Th>
+                        <Th sortKey="updated_by" :sortBy :orderBy>{{ t('label.updated_by') }}</Th>
+                        <Th></Th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-200">
                     <div v-if="isLoading">Loading...</div>
                     <tr v-for="translation in paginatedData" :key="translation.id">
-                        <td class="px-2 py-2 whitespace-nowrap">{{ translation.id }}</td>
-                        <td class="px-2 py-2 whitespace-nowrap">{{ translation.translations?.[locale] }}</td>
-                        <td class="px-2 py-2 whitespace-nowrap">{{ getDateTime(translation.createdAt) }}</td>
-                        <td class="px-2 py-2 whitespace-nowrap">{{ translation.createdBy }}</td>
-                        <td class="px-2 py-2 whitespace-nowrap">{{ getDateTime(translation.updatedAt) }}</td>
-                        <td class="px-2 py-2 whitespace-nowrap">{{ translation.updatedBy }}</td>
-                        <td class="px-2 py-2 whitespace-nowrap">
+                        <Td>{{ translation.id }}</Td>
+                        <Td>{{ translation.translations?.[locale] }}</Td>
+                        <Td>{{ getDateTime(translation.createdAt) }}</Td>
+                        <Td>{{ translation.createdBy }}</Td>
+                        <Td>{{ getDateTime(translation.updatedAt) }}</Td>
+                        <Td>{{ translation.updatedBy }}</Td>
+                        <Td>
                             <div class="flex gap-3">
-                                <button class="cursor-pointer" @click="editTranslation(translation.id)">{{ t('button.edit') }}</button>
-                                <button class="cursor-pointer" @click="deleteTranslation(translation.id)">{{ t('button.delete') }}</button>
+                                <Button @click="editTranslation(translation.id)">{{ t('button.edit') }}</Button>
+                                <Button @click="deleteTranslation(translation.id)">{{ t('button.delete') }}</Button>
                             </div>
-                        </td>
+                        </Td>
                     </tr>
                 </tbody>
             </table>
